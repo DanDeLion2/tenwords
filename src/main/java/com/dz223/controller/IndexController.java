@@ -57,6 +57,11 @@ public class IndexController {
         }*/
         return homeList;
     }
+
+    /**
+     * saddd
+     * @return
+     */
     @RequestMapping("/bianji")
     public String bianji(){
         return "addUpdateHome";
