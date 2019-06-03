@@ -1,0 +1,261 @@
+div {
+   /* border: 1px solid red;*/
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/*.top0 {
+    width: auto;
+    height: 30px;
+    !*margin-left: 100px;*!
+    !*text-align: center;*!
+    background-color: #F6F6F6;
+}*/
+
+.top0 .top_span1 {
+    float: left;
+    margin-left: 8%;
+    margin-top: 0.4%;
+    font-size: 2.0rem;
+    color: #676767;
+    width: 42%;
+}
+
+/*.top0 .toplinks0 {
+    float: right;
+    list-style: none;
+    width: 100%;
+    padding-right: 10%;
+    font-size: 0.8rem;
+}*/
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    color: red;
+}
+
+.top0 .toplinks li {
+    float: left;
+    margin-right: 20px;
+    margin-top: 4px;
+}
+
+.top1 {
+    margin-left: 50%;
+    /*div内容居中效果*/
+    height: 1000px;
+    /*怎个内容div的高度*/
+    width: 960px;
+    /*怎个内容div的宽度*/
+    text-align: center;
+}
+
+.contextdiv {
+    height: auto;
+    /*怎个内容div的高度*/
+    width: 960px;
+    /*怎个内容div的宽度*/
+}
+
+.contextdiv div {
+    width: 400px;
+    height: 300px;
+    float: right;
+}
+
+/*设置头部菜单的高度*/
+
+.menu {
+    height: 80px;
+    /*background-color: chartreuse;*/
+}
+
+/*设置头部左边浮动div*/
+
+.menu .menu_1 {
+    width: auto;
+    float: left;
+    margin-top: 0px;
+
+}
+
+/*设置头部右边浮动div*/
+
+.menu .menu_2 {
+    width: auto;
+    float: right;
+    margin-top: 18px;
+}
+
+/*设置功能菜单*/
+
+.function1 {
+    width: 896px;
+    height: 61px;
+    float: right;
+    margin-top: -67px;
+    margin-left: 0px;
+    background-color: antiquewhite;
+}
+
+.function1 ul .li_1 {
+    margin-left: 80px;
+}
+
+.function ul li a:hover {
+    color: red;
+}
+
+.function1 ul li {
+    list-style: none;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 26px;
+}
+
+/*设置管理员菜单*/
+
+.li_1 .Admin_1 li,
+.li_3 .Admin_3 li,
+.li_4 .Admin_4 li,
+.li_5 .Admin_5 li,
+.li_6 .Admin_6 li,
+.li_7 .Admin_7 li {
+    list-style: none;
+    float: none;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 6px;
+    margin-left: 0px;
+}
+
+.Admin_1 li a:hover,
+.Admin_2 li a:hover,
+.Admin_3 li a:hover,
+.Admin_4 li a:hover,
+.Admin_5 li a:hover,
+.Admin_6 li a:hover,
+.Admin_7 li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.Admin_1,
+.Admin_2,
+.Admin_3,
+.Admin_4,
+.Admin_5,
+.Admin_6,
+.Admin_7 {
+    background-color: aquamarine;
+}
+
+.Admin_1 li,
+.Admin_2 li,
+.Admin_3 li,
+.Admin_4 li,
+.Admin_5 li,
+.Admin_6 li,
+.Admin_7 li {
+    border-right: 1px solid #bbb;
+}
+
+/*设置作者菜单*/
+
+.li_1_1 .author_1 li,
+.li_1_2 .author_2 li,
+.li_1_5 .author_5 li {
+    list-style: none;
+    float: none;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 6px;
+    margin-left: 0px;
+}
+
+.author_1 li a:hover,
+.author_2 li a:hover,
+.author_5 li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.author_1,
+.author_2,
+.author_5 {
+    background-color: aquamarine;
+}
+
+.author_1 li,
+.author_2 li,
+.author_5 li {
+    border-right: 1px solid #bbb;
+}
+
+/*设置用户的菜单*/
+
+.li_3_1 .user_1 li,
+.li_3_3 .user_3 li,
+.li_3_4 .user_4 li,
+.li_3_6 .user_6 li {
+    list-style: none;
+    float: none;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 6px;
+    margin-left: 0px;
+}
+
+.user_1 li a:hover,
+.user_3 li a:hover,
+.user_4 li a:hover,
+.user_6 li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.user_1,
+.user_3,
+.user_4,
+.user_6 {
+    background-color: aquamarine;
+}
+
+.user_1 li,
+.user_3 li,
+.user_4 li,
+.user_6 li {
+    border-right: 1px solid #bbb;
+}
+
+/*游客菜单*/
+
+.tourist-1 li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.tourist-1 {
+    background-color: aquamarine;
+}
+
+.tourist-1 li {
+    border-right: 1px solid #bbb;
+}
+
+.li_1 .tourist-1 li {
+    list-style: none;
+    float: none;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 6px;
+    margin-left: 16px;
+}

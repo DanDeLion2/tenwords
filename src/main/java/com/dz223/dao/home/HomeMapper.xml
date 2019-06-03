@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dz223.dao.home.HomeMapper">
+    <select id="findAllHome" parameterType="map" resultType="map">
+        select th.*,u.username from tenwords_home th
+        INNER JOIN `user` u on u.userid=th.userid
+        where 1=1
+        <if test="todayling!=null">
+            and th.createtime &lt;#{todayling}
+        </if>
+        <if test="yesterDayDate!=null">
+            and th.createtime &gt;=#{yesterDayDate}
+        </if>
+            and th.hometype=#{hometype}
+            and th.status &gt;=#{status}
+        <if test="islimit!=null">
+            LIMIT #{page},#{pageitem}
+        </if>
+    </select>
+    <select id="getUserPermissionUrl" parameterType="map" resultType="map">
+         select ur.userid,r.rolename,r.rolestate,p.permissionid,p.permissionname,p.url,p.type from permission p
+         INNER JOIN role_permission rp on rp.permission=p.permissionid
+         inner join role r on r.roleid=rp.roleid
+         INNER JOIN user_role ur on ur.roleid=r.roleid
+         WHERE r.rolestate=#{rolestate} and p.type=#{type}
+         <if test='userid!="null".toString()'>
+            and ur.userid=#{userid}
+         </if>
+        GROUP BY permissionname
+        ORDER BY p.id asc
+    </select>
+    
+    <insert id="addSitesIpCount" parameterType="map">
+        insert into sitesipcount(sitesGetIp,createTime)
+        values(#{sitesGetIp},#{createTime})
+    </insert>
+    <select id="findByIpAndTime" parameterType="map" resultType="map">
+        select * from sitesipcount
+        where sitesGetIp=#{sitesGetIp} and createTime &gt;=#{kTime} and createTime &lt;#{zTime}
+    </select>
+</mapper>

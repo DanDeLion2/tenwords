@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dz223.dao.context.TenwordsHomeMapper">
+    <insert id="addTenWordsHome" parameterType="TenwordsHome">
+        INSERT into tenwords_home(homeid,hometype,hometitle,homecontent,homelike,homecomment,createtime,`status`,userid)
+        VALUES(#{homeid},#{hometype},#{hometitle},#{homecontent},#{homelike},#{homecomment},#{createtime},#{status},#{userid})
+    </insert>
+    <update id="updateLikeOrComment" parameterType="map">
+        update tenwords_home
+        <set>
+            <if test="homelike!=null">
+                homelike=#{homelike}
+            </if>
+            <if test="homecomment!=null">
+                homecomment=#{homecomment}
+            </if>
+        </set>
+        where
+        homeid=#{homeid} and status=#{status}
+    </update>
+    <insert id="addUserIpHome" parameterType="map">
+        insert into userid_ip_homeid(userid,ip,`type`,homeid,createtime,context)
+        values(#{userid},#{sitesGetIp},#{type},#{homeid},#{createtime},#{context})
+    </insert>
+    <select id="findByUserIdAndIpAndHomeIdByTime" parameterType="map" resultType="int">
+        select count(1) from  userid_ip_homeid
+        where 1=1
+        <if test='userid!="-1".toString()'>
+            and  userid=#{userid}
+        </if>
+        <if test='sitesGetIp!=null'>
+            and  ip=#{sitesGetIp}
+        </if>
+        and homeid=#{homeid} and `type`=#{type} and createTime &gt;=#{kTime} and createTime &lt;#{zTime}
+    </select>
+    <delete id="delUserIdIpHome" parameterType="map">
+        delete from userid_ip_homeid
+        where 1=1
+        <if test='userid!="-1".toString()'>
+            and  userid=#{userid}
+        </if>
+        <if test='sitesGetIp!=null'>
+            and  ip=#{sitesGetIp}
+        </if>
+        and homeid=#{homeid} and `type`=#{type} and createTime &gt;=#{kTime} and createTime &lt;#{zTime}
+    </delete>
+    <select id="selectTenwordsHomeByHomeid" parameterType="map" resultType="map">
+        select homelike,homecomment from tenwords_home
+        where homeid=#{homeid} and `status`=1
+    </select>
+
+    <select id="selectAllHomeListByUserOrRole" parameterType="map" resultType="map">
+        select th.*,u.username,u.usernumber,p.permissionname from tenwords_home th
+        INNER JOIN `user` u on u.userid=th.userid
+		INNER JOIN permission p on p.id=th.hometype
+        where 1=1
+        <if test='createTime!="-1".toString()'>
+            and th.createtime LIKE CONCAT('%',#{createTime},'%')
+        </if>
+        <if test='statuss!="-1".toString()'>
+            and th.status=#{statuss}
+        </if>
+        <if test='userId!="-1".toString()'>
+            and u.userid=#{userId}
+        </if>
+        <if test='homeType!="-1".toString()'>
+            and th.hometype=#{homeType}
+        </if>
+        <if test='userNumber!="-1".toString()'>
+            and u.usernumber like CONCAT('%',#{userNumber},'%')
+        </if>
+        <if test='homeTitle!="-1".toString()'>
+            and th.hometitle like CONCAT('%',#{homeTitle},'%')
+        </if>
+			LIMIT #{page},#{pageItem}
+    </select>
+    <select id="selectCountHomeListByUserOrRole" parameterType="map" resultType="int">
+        select count(1) from tenwords_home th
+        INNER JOIN `user` u on u.userid=th.userid
+        INNER JOIN permission p on p.id=th.hometype
+        where 1=1
+        <if test='createTime!="-1".toString()'>
+            and th.createtime LIKE CONCAT('%',#{createTime},'%')
+        </if>
+        <if test='statuss!="-1".toString()'>
+            and th.status=#{statuss}
+        </if>
+        <if test='userId!="-1".toString()'>
+            and u.userid=#{userId}
+        </if>
+        <if test='homeType!="-1".toString()'>
+            and th.hometype=#{homeType}
+        </if>
+        <if test='userNumber!="-1".toString()'>
+            and u.usernumber like CONCAT('%',#{userNumber},'%')
+        </if>
+        <if test='homeTitle!="-1".toString()'>
+            and th.hometitle like CONCAT('%',#{homeTitle},'%')
+        </if>
+    </select>
+</mapper>
